@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as momentTimezone from 'moment-timezone'
 
 async function bootstrap() {
@@ -20,6 +21,15 @@ async function bootstrap() {
       .tz('America/Sao_Paulo')
       .format('YYYY-MM-DD HH:mm:ss.SSS')
   }
+
+  const options = new DocumentBuilder()
+  .setTitle('API Smartranking')
+  .setDescription('The Smartranking API description')
+  .setVersion('1.0')
+  .addTag('api')
+  .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(8080);
 }

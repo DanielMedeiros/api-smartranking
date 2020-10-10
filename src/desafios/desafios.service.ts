@@ -9,9 +9,7 @@ import { AtribuirDesafioPartidaDto } from './dtos/atribuir-desafio-partida.dto';
 import { DesafioStatus } from './interfaces/desafio-status.enum';
 import { CategoriasService } from 'src/categorias/categorias.service';
 
-/*
-Desafio
-*/
+
 
 @Injectable()
 export class DesafiosService {

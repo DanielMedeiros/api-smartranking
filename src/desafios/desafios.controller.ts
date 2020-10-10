@@ -40,7 +40,7 @@ export class DesafiosController {
 
         }    
 
-   @Post('/:desafio/partida/')
+   @Post('/:desafio/partida')
    async atribuirDesafioPartida(
        @Body(ValidationPipe) atribuirDesafioPartidaDto: AtribuirDesafioPartidaDto,
        @Param('desafio') _id: string): Promise<void> {
