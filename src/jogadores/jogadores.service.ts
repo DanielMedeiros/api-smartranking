@@ -24,6 +24,7 @@ export class JogadoresService {
         } 
             
         const jogadorCriado = new this.jogadorModel(criaJogadorDto)
+        this.logger.log('Criando jogador..');
         return await jogadorCriado.save()
     
     }
@@ -37,13 +38,14 @@ export class JogadoresService {
             throw new NotFoundException(`Jogadodor com id ${_id} não econtrado`)
         }
 
+        this.logger.log('Atualizando jogador..');
         await this.jogadorModel.findOneAndUpdate({_id}, 
                 {$set: atualizarJogadorDto}).exec()
  
     }
 
 
-    async consultarTodosJogadores(): Promise<Jogador[]> {
+    async consultarTodosJogadores(): Promise<Jogador[]> {        
         return await this.jogadorModel.find().exec()
     }
 
@@ -66,7 +68,7 @@ export class JogadoresService {
         if (!jogadorEncontrado) {
             throw new NotFoundException(`Jogador com id ${_id} não encontrado`)
         }
-
+        this.logger.log('Deletando jogador..');
         return await this.jogadorModel.deleteOne({_id}).exec();
     }
 
